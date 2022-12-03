@@ -34,14 +34,17 @@ public class Day3_2 {
                 outerloop:
                 for (int i=0; i < bag1.length(); i++) {
                     for (int j=0; j < bag2.length(); j++) {
-                            for (int k=0; k < bag3.length(); k++) {
-                            char item1 = bag1.charAt(i);
-                            char item2 = bag2.charAt(j);
-                            char item3 = bag3.charAt(k);
+                        char item1 = bag1.charAt(i);
+                        char item2 = bag2.charAt(j);
 
-                            if (item1 == item2 && item2 == item3) {
-                                score += getPriorityScore(item1);
-                                break outerloop;
+                        if (item1 == item2) {
+                            for (int k=0; k < bag3.length(); k++) {
+                                char item3 = bag3.charAt(k);
+                                
+                                if (item2 == item3) {
+                                    score += getPriorityScore(item1);
+                                    break outerloop;
+                                }
                             }
                         }
                     }
