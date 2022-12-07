@@ -1,7 +1,6 @@
 // Day 5
 // https://adventofcode.com/2022/day/5
 import java.util.*;
-import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

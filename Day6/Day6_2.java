@@ -1,7 +1,6 @@
 // Day 6 Part 2
 // https://adventofcode.com/2022/day/6#part2
 import java.util.*;
-import java.io.*;
 
 public class Day6_2 {
   static int checkMarker(String substr) {
