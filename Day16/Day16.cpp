@@ -33,7 +33,9 @@ class ValveBFS {
     private:
         map<string, Valve> valves;
         map<string, vector<string>> connections;
-        int maxPressure = 0; // Part 1 Answer
+        int bestPressureScore = 0; // Part 1 Answer
+
+        list<Tracker> trackers;
 
         void bfs(string start) {
             list<string> queue;
@@ -86,33 +88,44 @@ class ValveBFS {
             }
         }
 
-        int findMaxPressure(string originame, int duration) {
-            Valve originode = valves[originame];
-            Tracker tracker = Tracker();
+        
 
-            return tracker.getMaxPressure(originode, 20);
-        }
+        // int findMaxPressure(string originame, int duration) {
+        //     Valve originode = valves[originame];
+        //     Tracker tracker = Tracker();
+
+        //     return tracker.getMaxPressure(originode, 20);
+        // }
 };
 
 class Tracker {
     private:
-        // Valve *currentValve;
-        // int simSteps;
-        int pressureScore = 0;
+        Valve *currentValve;
+        int steps;
+        list<Tracker> *trackers;
+        int *bestPressureScore;
+        map<string, bool> visited;
 
-    public:
-        Tracker() {
-            // this -> currentValve = &currentValve;
-            // this -> simSteps = simSteps;
+        int stepInto(Valve valve, int stepsLeft) {
+            Tracker newTracker = Tracker(valve, stepsLeft, *trackers, *bestPressureScore);
+            trackers->push_back(newTracker);
         }
 
-        int getMaxPressure(Valve &currentValve, int stepsLeft) {
-            list<string> queue;
-            map<string, bool> visited;
+    public:
+        Tracker(Valve &currentValve, int steps, 
+            list<Tracker> &trackers, int &bestPressureScore) {
+            this -> currentValve = &currentValve;
+            this -> steps = steps;
+            this -> trackers = &trackers;
+            this -> bestPressureScore = &bestPressureScore;
+        }
+
+        int getMaxPressure() {
+            // map<string, bool> visited;
 
             // TODO
 
-            map<string, int> adj = currentValve.adj;
+            map<string, int> &adj = currentValve->adj;
             for (auto iter=adj.begin(); iter != adj.end(); iter++) {
                 string vName = iter->first; int dist = iter->second;
             }
