@@ -4,7 +4,7 @@
 #include <iostream>
 #include <bits/stdc++.h>
 
-#define WORLD_SIZE 60
+#define WORLD_SIZE 21
 
 using namespace std;
 
